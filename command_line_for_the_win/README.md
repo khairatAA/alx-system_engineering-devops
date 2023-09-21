@@ -1,6 +1,6 @@
 # Project: Command line for the win
 
-##Specific
+##i Specifics
 
 Here are the steps to follow:
 
