@@ -4,7 +4,7 @@
 log_file="apache-access.log"
 if [ -f "$log_file" ] && [ -s "$log_file" ];
 then
-	var=$(awk '{ip_status[$1" "$9]++} END {for (key in ip_status) {print ip_status[key], key}}' "$log_file" | sort -nr)
+	var=$(awk 'NF>=9 {ip_status[$1" "$9]++} END {for (key in ip_status) {print ip_status[key], key}}' "$log_file" | sort -nr)
 
 	echo "$var"
 fi
