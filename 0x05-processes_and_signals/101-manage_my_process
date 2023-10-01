@@ -12,8 +12,8 @@ handle_stop() {
 	then
 		pid=$(cat /var/run/my_process.pid)
         	kill -2 "$pid"
+		echo "manage_my_process stopped"
         	rm  /var/run/my_process.pid
-        	echo "manage_my_process stopped"
 	fi
 }
 
