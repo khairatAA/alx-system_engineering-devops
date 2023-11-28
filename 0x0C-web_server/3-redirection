@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Install nginx web server
+
+# Step 1 – Installing Nginx
+apt update
+apt install nginx -y
+
+# Nginx listening on port 80
+
+sed -i 's/listen [::]:80 default_server;/listen 80;/g' /etc/nginx/sites-available/default
+
+# querying Nginx at its root / with a GET request (requesting a page) using curl
+
+cat <<EOF > /var/www/html/index.html
+Hello World!
+EOF
+
+# Redirection
+
+server_redirection = "server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+
+sudo sed -i "s/server_name _;/$server_redirection/" /etc/nginx/sites-enabled/default
+
+# Restart nginx
+service nginx restart
