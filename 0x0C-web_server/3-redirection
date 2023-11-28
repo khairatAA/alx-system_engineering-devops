@@ -17,9 +17,18 @@ EOF
 
 # Redirection
 
-server_redirection = "server_name _;\n\trewrite ^\/redirect_me https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;"
+echo "server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
 
-sed -i "s/server_name _;/$server_redirection/" /etc/nginx/sites-enabled/default
+	root /var/www/html;
+	index index.html index.htm index.nginx-debian.html;
+	server_name _;
+
+	location /redirect_me {
+		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+	}
+}" > /etc/nginx/sites-available/default
 
 # Restart nginx
 service nginx restart
