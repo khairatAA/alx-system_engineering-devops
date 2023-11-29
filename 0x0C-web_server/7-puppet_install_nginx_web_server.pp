@@ -1,31 +1,27 @@
 #  Install Nginx web server (w/ Puppet)
 
+# Update
 exec { 'apt_update':
-  command  => '/usr/bin/apt update',
+  command => 'apt-get update',
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
 }
 
-exec { 'nginx_install':
-  command => '/usr/bin/apt install nginx -y',
-  require => Exec['apt_update'],
+# Install nginx
+package { 'nginx':
+  ensure     => 'installed',
 }
 
-#$file_path = '/etc/nginx/sites-available/default'
-
-#$file_content = file($file_path)
-
-# $replace_content = $file_content.strip.gsub(/listen [::]:80 default_server;/, 'listen 80;')
-
-#file { $file_path:
-#  ensure  => file,
-#  content => $replace_content,
-#}
-
+# Write in index.html
 file { '/var/www/html/index.html':
-  ensure  => file,
-  content => 'Hello World!',
-  require => Exec['nginx_install']
+  content => 'Hello World!\n',
 }
 
+# Write in error-page.html
+file { '/var/www/html/error-page.html':
+  content => "Ceci n'est pas une page\n",
+}
+
+# redirection & error page
 $redirection = "
 server {
         listen 80 default_server;
@@ -34,9 +30,16 @@ server {
         root /var/www/html;
         index index.html index.htm index.nginx-debian.html;
         server_name _;
+	location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files \$uri \$uri/ =404;
+        }
 
-        location / {
-                try_files $${uri} $${uri}/ =404;
+        error_page 404 /error-page.html;
+        location /error-page.html {
+                root /var/www/html;
+                internal;
         }
 
         location /redirect_me {
@@ -46,12 +49,21 @@ server {
 }
 "
 
+# Handle redirection and error page
 file { '/etc/nginx/sites-available/default':
-  ensure  => present,
+  ensure  => file,
+  path    => '/etc/nginx/sites-enabled/default',
   content => $redirection,
 }
 
+# restart nginx
 exec { 'service_restart':
-  command => '/usr/sbin/service nginx restart',
-  require => File['/etc/nginx/sites-available/default'],
+  command => 'service nginx restart',
+  path    => '/usr/bin:/usr/sbin:/bin',
+}
+
+# start nginx
+service { 'nginx':
+  ensure  => running,
+  require => Package['nginx'],
 }
