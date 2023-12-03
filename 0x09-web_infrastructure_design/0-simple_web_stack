@@ -1,0 +1,9 @@
+https://imgur.com/lXY6y63
+
+- A server is a computer or software system that provides resources, services or data to other computers known as client over a network
+- Domain names are easy to undertand compared to numeric IP address
+- www.foobar.com is a subdomain, and it is represented in a DNS record as a "CNAME" (Canonical Name) record or an "A" (Address) record.
+- Web server is a used to fetch web pages.
+- Application server is plays a central role in the architecture of many web and enterprise applications.
+- Data base is used for storage of data.
+- Server communicates with the computer of the user requesting the website HTTP
