@@ -11,18 +11,8 @@ package { 'nginx':
   ensure     => 'installed',
 }
 
-# Write in index.html
-file { '/var/www/html/index.html':
-  content => 'Hello World!\n',
-}
-
-# Write in error-page.html
-file { '/var/www/html/error-page.html':
-  content => "Ceci n'est pas une page\n",
-}
-
-# redirection & error page
-$redirection = "
+# custom header
+$custom_header = "
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -36,25 +26,14 @@ server {
                 try_files \$uri \$uri/ =404;
 		add_header X-Served-By \$hostname;
         }
-
-        error_page 404 /error-page.html;
-        location /error-page.html {
-                root /var/www/html;
-                internal;
-        }
-
-        location /redirect_me {
-                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-        }
-
 }
 "
 
-# Handle redirection and error page
+# Handle custom_header
 file { '/etc/nginx/sites-available/default':
   ensure  => file,
   path    => '/etc/nginx/sites-enabled/default',
-  content => $redirection,
+  content => $custom_header,
 }
 
 # restart nginx
