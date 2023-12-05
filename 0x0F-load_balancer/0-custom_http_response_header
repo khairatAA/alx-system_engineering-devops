@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Configure Nginx so that its HTTP response contains a custom header
 
-# Step 1 – Installing Nginx
+# Installing Nginx
 apt update
 apt install nginx -y
 
@@ -19,7 +19,6 @@ Ceci n'est pas une page
 EOF
 
 # Redirection & custom 404 page & configure Nginx so that its HTTP response contains a custom header
-
 echo "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
