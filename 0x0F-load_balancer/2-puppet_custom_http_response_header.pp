@@ -34,6 +34,7 @@ server {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
                 try_files \$uri \$uri/ =404;
+		add_header X-Served-By \$hostname;
         }
 
         error_page 404 /error-page.html;
@@ -45,10 +46,6 @@ server {
         location /redirect_me {
                 return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
         }
-
-	location / {
-		add_header X-Served-By $hostname;
-	}
 
 }
 "
