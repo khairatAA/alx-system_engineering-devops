@@ -3,8 +3,6 @@
     <img src="https://skillicons.dev/icons?i=bash,linux,docker,puppet" />
   </a>
 </p>
-<h1 align="center">Data Structure and Algorithms</h1>
+<h1 align="center">SYSTEM ENGINEERING DEVOPS</h1>
 
-# SYSTEM ENGINEERING DEVOPS
-
-This repository contains solutions to system engineering deovps tasks from ALX.
+This repository contains directories to solutions of system engineering deovps tasks from ALX.
