@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 # Nginx likes port 80, debugging session
 
-apt-get update
-apt install nginx
-service nginx start
 rm /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
