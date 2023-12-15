@@ -1,13 +1,10 @@
 # TECHNICAL WRITING
-...
 
 ## TOPIC
-...
 
 What happens when you type `https://www.google.com` in your browser and press `Enter`
 
 ## REQUIREMENTS
-...
 
 The post covers:
 
@@ -21,6 +18,5 @@ The post covers:
 - Database
 
 ## URL
-...
 
 https://codewithkhairat.hashnode.dev/what-happens-when-you-type-httpswwwgooglecom-in-your-browser-and-press-enter
