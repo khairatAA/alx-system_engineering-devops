@@ -21,7 +21,7 @@ def get_info(id):
     # GET User's name
     with urllib.request.urlopen(user_url) as user_response:
         user_data = json.loads(user_response.read().decode('utf-8'))
-        employee_name = user_data.get('name')
+        employee_name = user_data.get('username')
 
     # GET todo of the user
     with urllib.request.urlopen(todo_url) as todo_response:
