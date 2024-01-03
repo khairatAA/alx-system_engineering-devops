@@ -31,7 +31,7 @@ def get_info(id):
             completed_tasks = []
 
             for task in todo_data:
-                if task['completed'] == True:
+                if task['completed']:
                     completed_tasks.append(task)
 
             print(f'Employee {empolyee_name} is done with \
