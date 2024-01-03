@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """0-gather_data_from_an_API module"""
 import json
-import urllib.request
 import sys
+import urllib.request
 
 
 def get_info(id):
