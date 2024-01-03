@@ -23,41 +23,20 @@ def get_info(id):
         user_data = json.loads(user_response.read().decode('utf-8'))
         employee_name = user_data.get('name')
 
-        # GET todo of the user
-        with urllib.request.urlopen(todo_url) as todo_response:
-            todo_data = json.loads(todo_response.read().decode('utf-8'))
+    # GET todo of the user
+    with urllib.request.urlopen(todo_url) as todo_response:
+        todo_data = json.loads(todo_response.read().decode('utf-8'))
 
-            total_tasks = len(todo_data)
-
-            completed_tasks = []
-
-            for task in todo_data:
-                if task['completed']:
-                    completed_tasks.append(task)
-
-            for task in completed_tasks:
-                task_title = f'\t {task["title"]}'
-
-            csv_data = [
-                    [
-                        sys.argv[1],
+    with open(f'{sys.argv[1]}.csv', 'w', newline='') as f:
+        for data in todo_data:
+            f.write(
+                    '"{}","{}","{}","{}"\n'.format(
+                        id,
                         employee_name,
-                        task['completed'],
-                        task['title'],
-                        ]
-                ]
-
-            for task in completed_tasks:
-                csv_data.append([
-                    sys.argv[1],
-                    employee_name,
-                    task['completed'],
-                    task['title']
-                    ])
-
-            with open(f'{sys.argv[1]}.csv', 'w', encoding='UTF8') as f:
-                writer = csv.writer(f)
-                writer.writerow(csv_data)
+                        data.get('completed'),
+                        data.get('title')
+                        )
+                    )
 
 
 if __name__ == '__main__':
