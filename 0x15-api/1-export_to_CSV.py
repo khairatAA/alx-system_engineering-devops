@@ -43,7 +43,7 @@ def get_info(id):
                         sys.argv[1],
                         employee_name,
                         task['completed'],
-                        task['title'].
+                        task['title'],
                         ]
                 ]
 
