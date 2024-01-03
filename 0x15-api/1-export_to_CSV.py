@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""0-gather_data_from_an_API module"""
+"""0-gather_data_from_an_API module."""
 import csv
 import json
 import sys
