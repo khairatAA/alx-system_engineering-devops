@@ -34,8 +34,8 @@ def get_info(id):
                 if task['completed']:
                     completed_tasks.append(task)
 
-            print(f'Employee {empolyee_name} is done with \
-            tasks({len(completed_tasks)}/{total_tasks}):'.format())
+            print(f'Employee {empolyee_name} is done with ', end='')
+            print(f'tasks({len(completed_tasks)}/{total_tasks}):')
 
             for task in completed_tasks:
                 print(f'\t {task["title"]}')
