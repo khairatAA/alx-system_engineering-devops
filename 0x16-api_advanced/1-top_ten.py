@@ -10,7 +10,7 @@ def top_ten(subreddit):
     Args:
         subreddit: passed to the url
     """
-    headers = {'User-Agent': 'My User Agent'}
+    headers = {'User-Agent': 'My User Agent 1.0'}
 
     url = f'https://www.reddit.com/r/{subreddit}/hot.json'
 
@@ -18,7 +18,7 @@ def top_ten(subreddit):
             "limit": 10,
             }
 
-    r = requests.get(url, headers=headers, params=params)
+    r = requests.get(url, headers=headers, params=params, allow_redirects=False)
 
     if r.status_code == 200:
         data = r.json()
