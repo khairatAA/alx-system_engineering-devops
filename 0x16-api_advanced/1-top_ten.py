@@ -29,12 +29,8 @@ def top_ten(subreddit):
         data = r.json()
         results = data.get("data")
 
-        hot_titles = []
-
         for i in results.get("children"):
-            hot_titles = i.get('data').get('title')
-            print(hot_titles)
+            title = i.get('data').get('title')
+            print(title)
     else:
         print(None)
-
-    return
