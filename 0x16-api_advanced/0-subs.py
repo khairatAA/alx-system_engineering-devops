@@ -9,16 +9,17 @@ def number_of_subscribers(subreddit):
     (not active users, total subscribers)
     for a given subreddit
     """
-    headers = {'User-Agent': 'Custom User Agent'}
+    headers = {'User-Agent': 'My User Agent'}
 
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
 
     r = requests.get(url, headers=headers)
 
     if r.status_code == 200:
-        data = r.json()
+        if r.text:
+            data = r.json()
 
-        subcribers_count = data['data']['subscribers']
-        return subcribers_count
+            subcribers_count = data['data']['subscribers']
+            return subcribers_count
 
     return 0
