@@ -38,3 +38,5 @@ In the last two days, we've conducted an internal review and analysis of the out
 - Patch Nginx server.
 - Add monitoring on server memory.
 - Porper testing before deylopment.
+
+<img src='./illustration-for-postmortem-page.png' alt='Postmortem illustration'>
