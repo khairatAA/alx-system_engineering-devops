@@ -1,8 +1,7 @@
-# 500 error outage inident report
+# Error 500 outage incident report
 
-<br/>
 <b>Posted</b>: Sunday, January 21, 2024
-<br/>
+<br>
 
 By the Software Engineering Team
 
